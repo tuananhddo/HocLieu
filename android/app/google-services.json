@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "147920297321",
+    "firebase_url": "https://hoclieu-clone.firebaseio.com",
+    "project_id": "hoclieu-clone",
+    "storage_bucket": "hoclieu-clone.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:147920297321:android:bce225b2a27104027371f8",
+        "android_client_info": {
+          "package_name": "tuananhdo.hoclieu_clone_0_4"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "147920297321-qp08rt7sfr4b8dg2d5kgvofiq3rmdjrb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "tuananhdo.hoclieu_clone_0_4",
+            "certificate_hash": "ec2a5894efad2417b81178ac77d7da3e7a433fd5"
+          }
+        },
+        {
+          "client_id": "147920297321-9djv6qv8ff0q8b511r9bjmg34fsl759r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0usmyAjwRtpv6w2m_oRU0A27hHkhvAgQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "147920297321-9djv6qv8ff0q8b511r9bjmg34fsl759r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

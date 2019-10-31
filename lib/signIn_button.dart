@@ -1,32 +1,37 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'home_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 final GoogleSignIn googleSignIn = GoogleSignIn();
 
-Future<String> signInWithGoogle() async {
+Future<bool> signInWithGoogle() async {
   final GoogleSignInAccount googleSignInAccount = await googleSignIn.signIn();
-  final GoogleSignInAuthentication googleSignInAuthentication =
-  await googleSignInAccount.authentication;
-
-  final AuthCredential credential = GoogleAuthProvider.getCredential(
-    accessToken: googleSignInAuthentication.accessToken,
-    idToken: googleSignInAuthentication.idToken,
-  );
-  final  FirebaseUser user = await _auth.signInWithCredential(credential);
+  try{
+    final GoogleSignInAuthentication googleSignInAuthentication = await googleSignInAccount.authentication;
+    final AuthCredential credential = GoogleAuthProvider.getCredential(
+      accessToken: googleSignInAuthentication.accessToken,
+      idToken: googleSignInAuthentication.idToken,
+    );
+    final  FirebaseUser user = await _auth.signInWithCredential(credential);
 //  final FirebaseUser user = authResult.user;
 
-  assert(!user.isAnonymous);
-  assert(await user.getIdToken() != null);
+    assert(!user.isAnonymous);
+    assert(await user.getIdToken() != null);
 
-  final FirebaseUser currentUser = await _auth.currentUser();
-  assert(user.uid == currentUser.uid);
+    final FirebaseUser currentUser = await _auth.currentUser();
+    assert(user.uid == currentUser.uid);
+    return true;
 
-  return 'signInWithGoogle succeeded: $user';
+  }catch(Exception){
+    print(Exception.toString());
+    return  false;
+  }
+
 }
+
 
 void signOutGoogle() async{
   await googleSignIn.signOut();
@@ -38,15 +43,19 @@ Widget signInButton(data,context) {
   return OutlineButton(
     splashColor: Colors.grey,
     onPressed: () {
-      signInWithGoogle().whenComplete(() {
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) {
-              return FirstScreen();
-            },
-          ),
-        );
-      });
+      signInWithGoogle().whenComplete((){}).then((isAuthenticate) {
+        if(isAuthenticate){
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) {
+                return FirstScreen();
+              },
+            ),
+          );
+        }
+
+      }
+      );
     },
 //    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
     highlightElevation: 0,
@@ -76,7 +85,22 @@ class FirstScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(color: Colors.green[100]),
+      body: Container(
+        color: Colors.green[100],
+        child: ListView(
+          children: <Widget>[
+            Text('Login Success'),
+            OutlineButton(
+              onPressed: (){
+                signOutGoogle();
+                Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) {return MyHomePage(title: 'Drawer Demo',);}), ModalRoute.withName('/'));
+
+              },
+              child: Text('SignOut'),
+            )
+          ],
+        )
+      ),
     );
   }
 }
