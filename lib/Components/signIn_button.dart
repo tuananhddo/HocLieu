@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'home_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -39,19 +38,20 @@ void signOutGoogle() async{
   print("User Sign Out");
 }
 
-Widget signInButton(data,context) {
+Widget signInButton(data,context,callback) {
   return OutlineButton(
     splashColor: Colors.grey,
     onPressed: () {
       signInWithGoogle().whenComplete((){}).then((isAuthenticate) {
         if(isAuthenticate){
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) {
-                return FirstScreen();
-              },
-            ),
-          );
+          callback(isAuthenticate);
+//          Navigator.of(context).push(
+//            MaterialPageRoute(
+//              builder: (context) {
+//                return FirstScreen();
+//              },
+//            ),
+//          );
         }
 
       }
@@ -80,27 +80,4 @@ Widget signInButton(data,context) {
       ),
     ),
   );
-}
-class FirstScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        color: Colors.green[100],
-        child: ListView(
-          children: <Widget>[
-            Text('Login Success'),
-            OutlineButton(
-              onPressed: (){
-                signOutGoogle();
-                Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) {return MyHomePage(title: 'Drawer Demo',);}), ModalRoute.withName('/'));
-
-              },
-              child: Text('SignOut'),
-            )
-          ],
-        )
-      ),
-    );
-  }
 }
