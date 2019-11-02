@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
+//import 'package:flutter/foundation.dart';
 
 Widget navigationDrawer(context) {
   String page = context.widget.toString();
@@ -19,7 +19,6 @@ Widget navigationDrawer(context) {
             decoration: new BoxDecoration(
               color: Colors.blue,
             ),
-
           ),
         ),
         ListTile(
@@ -34,7 +33,11 @@ Widget navigationDrawer(context) {
           leading: const Icon(Icons.book),
           title: Text('Kết quả học'),
           onTap: () {
-            Navigator.pushNamed(context, '/result');
+            if (page != 'ResultPage') {
+              Navigator.pushNamed(context, '/result');
+            } else {
+              Navigator.pop(context);
+            }
           },
         ),
         ListTile(
@@ -47,17 +50,6 @@ Widget navigationDrawer(context) {
             } else {
               Navigator.pop(context);
             }
-            // Update the state of the app
-            // ...
-            // Then close the drawer
-//          Navigator.pop(context);
-//          Navigator.of(context).push(
-//            MaterialPageRoute(
-//              builder: (context) {
-//                return MyHomePage(title:'Người dùng');
-//              },
-//            ),
-//          );
           },
         ),
         ListTile(
@@ -69,9 +61,6 @@ Widget navigationDrawer(context) {
             } else {
               Navigator.pop(context);
             }
-//          Navigator.pushReplacementNamed(context, '/info');
-//            Navigator.pushNamedAndRemoveUntil(context, '/info', ModalRoute.withName('/'));
-//          Navigator.of(context).pushNamed('/info');
           },
         ),
       ],

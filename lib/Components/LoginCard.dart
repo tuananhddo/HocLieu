@@ -1,24 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:hoclieu_clone_0_4/Components/notSignInButton.dart';
 
 import 'signIn_button.dart';
 
-Widget hasLoginCard (hasLogin) {
-    return
-      Column(
-          children:<Widget>[
-            Text('Login Success'),
-            OutlineButton(
-              onPressed: (){
-              signOutGoogle();
-              hasLogin(false);
-//              Navigator.pushNamed(context, '/');
-              },
-              child: Text('SignOut'),
+Widget hasLoginCard (hasLoginCallback,user) {
 
-
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children:<Widget>[
+        Text('Người dùng đang đăng nhập'),
+        Center(
+            child:Image.network(
+              user.photoUrl,
+              height: 160,
+              width: 160,
+              scale: 0.6,
             )
-          ]
+        ),
+        Text(user.displayName,style: TextStyle(fontSize: 20),),
+        OutlineButton(
+          onPressed: (){
+          signOutGoogle();
+          hasLoginCallback([false,null]);
+//              Navigator.pushNamed(context, '/');
+          },
+          child: Text('Đăng xuất'),
 
+
+        )
+      ]
     );
 }
 
@@ -31,6 +41,7 @@ Widget notLoginCard(context,callback) {
 
         signInButton('Google    ',context,callback),
 //                   signInButton('Facebook'),
+        notSignInButton(context),
       ]
   );
 }

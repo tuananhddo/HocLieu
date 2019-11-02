@@ -6,7 +6,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 final FirebaseAuth _auth = FirebaseAuth.instance;
 final GoogleSignIn googleSignIn = GoogleSignIn();
 
-Future<bool> signInWithGoogle() async {
+Future<List> signInWithGoogle() async {
   final GoogleSignInAccount googleSignInAccount = await googleSignIn.signIn();
   try{
     final GoogleSignInAuthentication googleSignInAuthentication = await googleSignInAccount.authentication;
@@ -22,11 +22,12 @@ Future<bool> signInWithGoogle() async {
 
     final FirebaseUser currentUser = await _auth.currentUser();
     assert(user.uid == currentUser.uid);
-    return true;
-
+    print('${user}');
+    return [true,user];
+    
   }catch(Exception){
     print(Exception.toString());
-    return  false;
+    return  [false,null];
   }
 
 }
@@ -43,7 +44,7 @@ Widget signInButton(data,context,callback) {
     splashColor: Colors.grey,
     onPressed: () {
       signInWithGoogle().whenComplete((){}).then((isAuthenticate) {
-        if(isAuthenticate){
+        if(isAuthenticate[0]){
           callback(isAuthenticate);
 //          Navigator.of(context).push(
 //            MaterialPageRoute(
