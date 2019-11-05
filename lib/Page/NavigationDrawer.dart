@@ -26,7 +26,7 @@ Widget navigationDrawer(context) {
           title: Text('Sách'),
           onTap: () {
             Navigator.pushNamed(context, '/books');
-            Navigator.pop(context);
+//            Navigator.pop(context);
           },
         ),
         ListTile(
