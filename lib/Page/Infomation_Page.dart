@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'NavigationDrawer.dart';
-import '../title_and_description/AppDescription.dart';
+import '../Constant//AppDescription.dart';
 class InfomationScreen extends StatelessWidget {
   final appTitle = 'Giới thiệu';
   @override

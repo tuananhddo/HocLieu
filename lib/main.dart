@@ -23,8 +23,6 @@ class _MyAppState extends State<MyApp> {
   }
   @override
   Widget build(BuildContext context) {
-    debugPrint('This is app state');
-    debugPrint(user.toString());
     return MaterialApp(
 //      title: appTitle,
 //      home: MyHomePage(title: appTitle),

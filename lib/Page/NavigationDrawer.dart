@@ -25,9 +25,11 @@ Widget navigationDrawer(context) {
           leading: const Icon(Icons.book),
           title: Text('Sách'),
           onTap: () {
-            Navigator.pushNamed(context, '/books');
-//            Navigator.pop(context);
-          },
+            if (page != 'BooksPage') {
+              Navigator.pushNamed(context, '/books');
+            } else {
+              Navigator.pop(context);
+            }          },
         ),
         ListTile(
           leading: const Icon(Icons.book),

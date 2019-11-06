@@ -22,7 +22,7 @@ Future<List> signInWithGoogle() async {
 
     final FirebaseUser currentUser = await _auth.currentUser();
     assert(user.uid == currentUser.uid);
-    print('${user}');
+//    print('${user}');
     return [true,user];
     
   }catch(Exception){
