@@ -1,34 +1,29 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'package:hoclieu_clone_0_4/Components/WordComponent/BottomButton.dart';
+import 'package:hoclieu_clone_0_4/Components/WordComponent/WordRow.dart';
 import 'package:hoclieu_clone_0_4/Constant/APIConstant.dart';
+import 'package:hoclieu_clone_0_4/fetchData/Unit.dart';
 import 'NavigationDrawer.dart';
 import '../fetchData/Word.dart';
 class WordsPage extends StatefulWidget {
 
   final String title = 'Word Page';
-  final int unitId;
-  WordsPage({Key key,this.unitId}) : super(key: key);
+  final Unit unit;
+  WordsPage({Key key,this.unit}) : super(key: key);
 
   @override
   _WordPageState createState() => new _WordPageState();
 }
 class _WordPageState extends State<WordsPage>{
   Future<List<Word>> words;
-  bool isChecked = false;
-  List<Color> _colors = [
-    Colors.red,
-    Colors.blue,
-    Colors.teal,
-    Colors.brown,
-    Colors.pink
-  ];
-  Color checkedColor = Colors.black;
+
   AudioPlayer audioPlayer = AudioPlayer();
 
   @override
   void initState() {
     super.initState();
-    words = fetchWords(baseURL,widget.unitId);
+    words = fetchWords(baseURL,widget.unit.id);
   }
   play(url) async {
     int result = await audioPlayer.play(baseURL+'/audio/'+url);
@@ -46,107 +41,57 @@ class _WordPageState extends State<WordsPage>{
           child: FutureBuilder<List<Word>>(
             future: words,
             builder: (context, snapshot) {
+              double iconSpace = 40;
               if (snapshot.hasData) {
                 return ListView.builder(
-                  itemCount: snapshot.data.length,
+                  itemCount: snapshot.data.length + 2,
                   itemBuilder: (BuildContext context,int index){
-                    return Column(
-                        children: <Widget>[
-                          ListTile(
-                            leading: Image.network(
-                              '$baseURL/image/${snapshot.data[index].image}',
-                              height: 50,
-                              width: 50,
-                              scale: 0.6,
-                              fit: BoxFit.fill,
+                    if(index == 0){
+                      return Column(
+                          children: <Widget>[
+                            ListTile(
+                              title: Row(children: <Widget>[
+                                Text('Unit ' + widget.unit.unit_number.toString() + '\t',style: TextStyle(color: Colors.blue),),
+                                Text(widget.unit.unit_name),
+                              ]),
                             ),
-                            title: Row(children: <Widget>[
-                              Text(snapshot.data[index].name + " ",style: TextStyle(color: Colors.red),),
-                              Icon(
-                                Icons.volume_up,
-                                color: Colors.green,
-                                size: 24.0,
-                              ),
-                              Text(snapshot.data[index].translated_name,style: TextStyle(fontSize: 12,),)
-                            ]),
-                            subtitle: Text(snapshot.data[index].description),
-                            onTap: (){play(snapshot.data[index].sound);},
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: <Widget>[
-
-                              Theme(
-                                data: ThemeData(unselectedWidgetColor: Colors.yellow),
-                                child: Checkbox(
-                                  value: isChecked,
-                                  tristate: false,
-                                  activeColor: Colors.yellow,
-                                  checkColor: checkedColor,
-                                  onChanged: (bool value) {
-                                    setState(() { isChecked = !isChecked;});
-                                  },
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: <Widget>[
+                                SizedBox(
+                                  width: iconSpace,
+                                  child:Icon(Icons.headset,color: Colors.yellow,),
                                 ),
-                              ),
-                              Theme(
-                                data: ThemeData(unselectedWidgetColor: Colors.blue),
-                                child: Checkbox(
-                                  value: isChecked,
-                                  tristate: false,
-                                  activeColor: Colors.blue,
-                                  checkColor: checkedColor,
-
-                                  onChanged: (bool value) {
-                                    setState(() { isChecked = !isChecked;});
-                                  },
+                                SizedBox(
+                                  width: iconSpace,
+                                  child:Icon(Icons.mic,color: Colors.blue,),
                                 ),
-                              ),
-                              Theme(
-                                data: ThemeData(unselectedWidgetColor: Colors.green),
-                                child: Checkbox(
-                                  value: isChecked,
-                                  tristate: false,
-                                  activeColor: Colors.green,
-                                  checkColor: checkedColor,
-
-                                  onChanged: (bool value) {
-                                    setState(() { isChecked = !isChecked;});
-                                  },
+                                SizedBox(
+                                  width: iconSpace,
+                                  child:Icon(Icons.mode_edit,color: Colors.green,),
                                 ),
-                              ),
-                              Theme(
-                                data: ThemeData(unselectedWidgetColor: Colors.red),
-                                child: Checkbox(
-                                  value: isChecked,
-                                  tristate: false,
-                                  activeColor: Colors.red,
-                                  checkColor: checkedColor,
-
-                                  onChanged: (bool value) {
-                                    setState(() { isChecked = !isChecked;});
-                                  },
+                                SizedBox(
+                                  width: iconSpace,
+                                  child:Icon(Icons.chrome_reader_mode,color: Colors.red,),
                                 ),
-                              ),
-                              Theme(
-                                data: ThemeData(unselectedWidgetColor: Colors.grey),
-                                child: Checkbox(
-                                  value: isChecked,
-                                  tristate: false,
-                                  activeColor: Colors.grey,
-                                  checkColor: checkedColor,
-
-                                  onChanged: (bool value) {
-                                    setState(() { isChecked = !isChecked;});
-                                  },
+                                SizedBox(
+                                  width: iconSpace,
+                                  child:Icon(Icons.done_all,color: Colors.grey,),
                                 ),
-                              ),
 
+                              ],
+                            ),
+                            Divider()
+                          ]
+                      );
 
-
-                            ],
-                          ),
-                          Divider()
-                        ]);
+                    }
+                    if(index == snapshot.data.length + 1){
+                      return ListTile(
+                        title: Text('Đánh dấu vào ô của từ để không luyện kỹ năng của cột tương ứng',style: TextStyle(wordSpacing: 8),),
+                      );
+                    }
+                    return WordRow(word : snapshot.data[index - 1],play: play,id:index);
                   },
 
                 );
@@ -161,22 +106,9 @@ class _WordPageState extends State<WordsPage>{
         bottomNavigationBar: BottomAppBar(
           child: Row(
             children: <Widget>[
-              IconButton(icon: Icon(Icons.menu), onPressed: () {},),
-              IconButton(icon: Icon(Icons.search), onPressed: () {},),
-              SizedBox(
-                height: 40,
-                width: 100,
-                child: Container(
-                  decoration: new BoxDecoration(
-                      color: Colors.green,
-                      borderRadius: new BorderRadius.circular(40.0)
-                  ),
-                  child: Center(
-                    child: Text('Chowi'),
-                  ),
-
-                ),
-              )
+              BottomButton(title: 'HỌC',height: 60,width: 140,color: Colors.green,icon: Icons.chrome_reader_mode),
+              BottomButton(title: 'HỌC',height: 60,width: 140,color: Colors.blue,icon: Icons.videogame_asset),
+              BottomButton(height: 60,width: 80,color: Colors.yellow,icon: Icons.games)
 
 
             ],

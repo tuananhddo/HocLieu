@@ -43,7 +43,7 @@ class _UnitPageState extends State<UnitsPage>{
                             onTap: (){
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => WordsPage(unitId : snapshot.data[index].id)),
+                                MaterialPageRoute(builder: (context) => WordsPage(unit : snapshot.data[index])),
                               );
                             },
                           ),

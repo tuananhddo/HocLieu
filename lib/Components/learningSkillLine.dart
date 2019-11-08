@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 class LearningSkillLine extends StatefulWidget{
 
   final String title;
-  LearningSkillLine({Key key, this.title: ""})
+  final IconData icon;
+  final Color iconColor;
+  LearningSkillLine({Key key, this.title: "",this.icon,this.iconColor})
       : super(key: key);
 
   @override
@@ -21,8 +23,8 @@ class LearningSkillLineState extends State<LearningSkillLine> {
           ListTile(
             title: Text(widget.title),
             leading: Icon(
-              Icons.restaurant_menu,
-              color: Colors.blue[500],
+              widget.icon,
+              color: widget.iconColor,
             ),
             trailing: CupertinoSwitch(
               value: _isChosen,

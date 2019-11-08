@@ -30,11 +30,11 @@ class _HomePageState extends State<MyHomePage>{
               Column(
                   children:<Widget>[
                     Text('Chọn kỹ năng bạn muốn luyện'),
-                    LearningSkillLine(title :'Nghe'),
-                    LearningSkillLine(title :'Nói'),
+                    LearningSkillLine(title :'Nghe',icon: Icons.headset,iconColor: Colors.yellow,),
+                    LearningSkillLine(title :'Nói',icon: Icons.mic,iconColor: Colors.blue,),
 
-                    LearningSkillLine(title :'Đọc'),
-                    LearningSkillLine(title :'Viết'),
+                    LearningSkillLine(title :'Viết',icon: Icons.mode_edit,iconColor: Colors.green,),
+                    LearningSkillLine(title :'Đọc',icon: Icons.chrome_reader_mode,iconColor: Colors.red,),
 
                   ]
               )
