@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hoclieu_clone_0_4/Components/WordComponent/CustomCheckBox..dart';
+import 'package:hoclieu_clone_0_4/Components/WordComponent/WordDetailPage.dart';
 import 'package:hoclieu_clone_0_4/Constant/APIConstant.dart';
+import 'package:hoclieu_clone_0_4/fetchData/Unit.dart';
 import 'package:hoclieu_clone_0_4/fetchData/Word.dart';
 
 class WordRow extends StatefulWidget{
@@ -9,7 +11,8 @@ class WordRow extends StatefulWidget{
   final int id;
   final Word word ;
   final Function(String) play;
-  WordRow({Key key, this.word,this.play,this.id})
+  final Unit unit;
+  WordRow({Key key, this.word,this.play,this.id,this.unit})
       : super(key: key);
 
   @override
@@ -46,7 +49,13 @@ class WordRowState extends State<WordRow> {
               Text(widget.word.translated_name,style: TextStyle(fontSize: 12,),)
             ]),
             subtitle: Text(widget.word.description),
-            onTap: (){widget.play(widget.word.sound);},
+            onTap: (){
+              widget.play(widget.word.sound);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => WordDetailPage(word: widget.word,unit: widget.unit,)),
+                );
+              }
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,

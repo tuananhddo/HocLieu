@@ -7,7 +7,8 @@ class BottomButton extends StatefulWidget{
   final double width;
   final Color color;
   final IconData icon;
-  BottomButton({Key key, this.title: "",this.height,this.width,this.color,this.icon})
+  final Widget renderringWidget;
+  BottomButton({Key key, this.title: "",this.height,this.width,this.color,this.icon,this.renderringWidget})
       : super(key: key);
 
   @override
@@ -20,7 +21,10 @@ class BottomButtonState extends State<BottomButton> {
     return GestureDetector(
       onTap: ()
       {
-//                  Navigator.pushNamed(context, '/result');
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => widget.renderringWidget),
+        );
       },
       child: SizedBox(
         height: widget.height,

@@ -1,6 +1,7 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:hoclieu_clone_0_4/Components/WordComponent/BottomButton.dart';
+import 'package:hoclieu_clone_0_4/Components/WordComponent/AllWordPopUp.dart';
 import 'package:hoclieu_clone_0_4/Components/WordComponent/WordRow.dart';
 import 'package:hoclieu_clone_0_4/Constant/APIConstant.dart';
 import 'package:hoclieu_clone_0_4/fetchData/Unit.dart';
@@ -20,10 +21,14 @@ class _WordPageState extends State<WordsPage>{
 
   AudioPlayer audioPlayer = AudioPlayer();
 
+  Widget summaryLearn ;
   @override
   void initState() {
     super.initState();
     words = fetchWords(baseURL,widget.unit.id);
+    words.then((data){
+      summaryLearn = new AllWordPopUp(words: data,unit: widget.unit,);
+    });
   }
   play(url) async {
     int result = await audioPlayer.play(baseURL+'/audio/'+url);
@@ -43,6 +48,8 @@ class _WordPageState extends State<WordsPage>{
             builder: (context, snapshot) {
               double iconSpace = 40;
               if (snapshot.hasData) {
+
+
                 return ListView.builder(
                   itemCount: snapshot.data.length + 2,
                   itemBuilder: (BuildContext context,int index){
@@ -91,7 +98,7 @@ class _WordPageState extends State<WordsPage>{
                         title: Text('Đánh dấu vào ô của từ để không luyện kỹ năng của cột tương ứng',style: TextStyle(wordSpacing: 8),),
                       );
                     }
-                    return WordRow(word : snapshot.data[index - 1],play: play,id:index);
+                    return WordRow(word : snapshot.data[index - 1],play: play,id:index,unit: widget.unit,);
                   },
 
                 );
@@ -107,7 +114,7 @@ class _WordPageState extends State<WordsPage>{
           child: Row(
             children: <Widget>[
               BottomButton(title: 'HỌC',height: 60,width: 140,color: Colors.green,icon: Icons.chrome_reader_mode),
-              BottomButton(title: 'HỌC',height: 60,width: 140,color: Colors.blue,icon: Icons.videogame_asset),
+              BottomButton(title: 'Play',height: 60,width: 140,color: Colors.blue,icon: Icons.videogame_asset),
               BottomButton(height: 60,width: 80,color: Colors.yellow,icon: Icons.games)
 
 
