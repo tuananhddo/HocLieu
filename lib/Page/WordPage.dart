@@ -26,7 +26,7 @@ class _WordPageState extends State<WordsPage>{
   void initState() {
     super.initState();
     words = fetchWords(baseURL,widget.unit.id);
-    summaryLearn = new AllWordPopUp(words: words,unit: widget.unit,play: play,);
+    summaryLearn = new AllWordPopUp(words: words,unit: widget.unit,play: play,playScreen: Text('Hello'),);
   }
   play(url) async {
     int result = await audioPlayer.play(baseURL+'/audio/'+url);

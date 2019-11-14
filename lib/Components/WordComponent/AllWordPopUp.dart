@@ -11,7 +11,8 @@ class AllWordPopUp extends StatefulWidget {
   final Unit unit;
   final Future<List<Word>> words;
   final Function(String) play;
-  AllWordPopUp({this.unit, this.words,this.play});
+  final Widget playScreen;
+  AllWordPopUp({this.unit, this.words,this.play,this.playScreen});
   @override
   _AllWordPopUpState createState() => new _AllWordPopUpState();
 
@@ -77,16 +78,22 @@ class _AllWordPopUpState extends State<AllWordPopUp>{
 
                               children: <Widget>[
                                 OutlineButton(
-                                  onPressed: (){
-                                  },
-                                  child: Text('Index}'),
+                                  onPressed: index == 0 ? null : (){
+                                    _pageController.animateToPage(index-1, duration:  const Duration(milliseconds: 400), curve: Curves.easeInOut,);
+
+                                  } ,
+                                  child: Icon(Icons.arrow_back),
                                 ),
+                                index == snapshot.data.length - 1 ?
                                 OutlineButton(
                                   onPressed: (){
+                                    _pageController.animateToPage(index+1, duration:  const Duration(milliseconds: 400), curve: Curves.easeInOut,);
                                   },
-                                  child: Text('Index  $index ${snapshot.data[index].name}'),
-                                ),
-                              ],
+                                  child: Icon(Icons.arrow_forward),
+                                ):
+                                BottomButton(title: 'Play',height: 60,width: 140,color: Colors.blue,icon: Icons.videogame_asset,renderringWidget: widget.playScreen,),
+
+                      ],
                             ),
 
                           ]

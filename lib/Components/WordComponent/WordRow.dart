@@ -6,6 +6,8 @@ import 'package:hoclieu_clone_0_4/Constant/APIConstant.dart';
 import 'package:hoclieu_clone_0_4/fetchData/Unit.dart';
 import 'package:hoclieu_clone_0_4/fetchData/Word.dart';
 
+import 'AllWordPopUp.dart';
+
 class WordRow extends StatefulWidget{
 
   final int id;
