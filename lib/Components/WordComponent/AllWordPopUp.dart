@@ -1,4 +1,6 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'package:hoclieu_clone_0_4/Constant/APIConstant.dart';
 import 'package:hoclieu_clone_0_4/fetchData/Unit.dart';
 import 'package:hoclieu_clone_0_4/fetchData/Word.dart';
 
@@ -7,9 +9,9 @@ import 'BottomButton.dart';
 class AllWordPopUp extends StatefulWidget {
 
   final Unit unit;
-  final List<Word> words;
-
-  AllWordPopUp({this.unit, this.words});
+  final Future<List<Word>> words;
+  final Function(String) play;
+  AllWordPopUp({this.unit, this.words,this.play});
   @override
   _AllWordPopUpState createState() => new _AllWordPopUpState();
 
@@ -27,33 +29,82 @@ class _AllWordPopUpState extends State<AllWordPopUp>{
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: Text("Word")),
-        body: PageView.builder(
-          controller: _pageController,
-          itemCount: widget.words.length,
-          itemBuilder: (context,index){
-            return Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children:<Widget>[
-//                  Center(
-//                      child:Image.network(
-//                        user.photoUrl,
-//                        height: 160,
-//                        width: 160,
-//                        scale: 0.6,
-//                      )
-//                  ),
-                  OutlineButton(
-                    onPressed: (){
-                    },
-                    child: Text('Index  $index'),
-                  )
-                ]
-            );          }
+        body: Center(
+          child: FutureBuilder<List<Word>>(
+            future: widget.words,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return PageView.builder(
+                    controller: _pageController,
+                    itemCount: snapshot.data.length,
+                    itemBuilder: (context,index){
+                      return Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+
+                          children:<Widget>[
+                            Center(
+                                child:Image.network(
+                                  '$baseURL/image/${snapshot.data[index].image}',
+                                  height: 160,
+                                  width: 160,
+                                  scale: 0.6,
+                                )
+                            ),
+                            GestureDetector(
+                              onTap: (){
+                                widget.play(snapshot.data[index].sound);
+
+                              },
+                              child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Text(snapshot.data[index].name + " ",style: TextStyle(color: Colors.red,fontSize: 20),),
+                                    Icon(
+                                      Icons.volume_up,
+                                      color: Colors.green,
+                                      size: 28.0,
+                                    ),
+                                  ]
+                              ),
+
+                            ),
+                            Text(snapshot.data[index].translated_name,style: TextStyle(fontSize: 18),),
+                            Text(snapshot.data[index].description,style: TextStyle(fontSize: 20,),),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+
+                              children: <Widget>[
+                                OutlineButton(
+                                  onPressed: (){
+                                  },
+                                  child: Text('Index}'),
+                                ),
+                                OutlineButton(
+                                  onPressed: (){
+                                  },
+                                  child: Text('Index  $index ${snapshot.data[index].name}'),
+                                ),
+                              ],
+                            ),
+
+                          ]
+                      );          }
+                );
+
+              } else if (snapshot.hasError) {
+                return Text("${snapshot.error}");
+              }
+              // By default, show a loading spinner.
+              return CircularProgressIndicator();
+            },
+          ),
         ),
         bottomNavigationBar: BottomAppBar(
           child: Row(
             children: <Widget>[
-              BottomButton(title: 'HỌC',height: 60,width: 140,color: Colors.green,icon: Icons.chrome_reader_mode),
+//              BottomButton(title: 'HỌC',height: 60,width: 140,color: Colors.green,icon: Icons.chrome_reader_mode),
             ],
           ),
         ),

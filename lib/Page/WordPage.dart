@@ -26,9 +26,7 @@ class _WordPageState extends State<WordsPage>{
   void initState() {
     super.initState();
     words = fetchWords(baseURL,widget.unit.id);
-    words.then((data){
-      summaryLearn = new AllWordPopUp(words: data,unit: widget.unit,);
-    });
+    summaryLearn = new AllWordPopUp(words: words,unit: widget.unit,play: play,);
   }
   play(url) async {
     int result = await audioPlayer.play(baseURL+'/audio/'+url);
@@ -48,8 +46,6 @@ class _WordPageState extends State<WordsPage>{
             builder: (context, snapshot) {
               double iconSpace = 40;
               if (snapshot.hasData) {
-
-
                 return ListView.builder(
                   itemCount: snapshot.data.length + 2,
                   itemBuilder: (BuildContext context,int index){
@@ -113,9 +109,9 @@ class _WordPageState extends State<WordsPage>{
         bottomNavigationBar: BottomAppBar(
           child: Row(
             children: <Widget>[
-              BottomButton(title: 'HỌC',height: 60,width: 140,color: Colors.green,icon: Icons.chrome_reader_mode),
-              BottomButton(title: 'Play',height: 60,width: 140,color: Colors.blue,icon: Icons.videogame_asset),
-              BottomButton(height: 60,width: 80,color: Colors.yellow,icon: Icons.games)
+              BottomButton(title: 'HỌC',height: 60,width: 140,color: Colors.green,icon: Icons.chrome_reader_mode,renderringWidget: summaryLearn,),
+              BottomButton(title: 'Play',height: 60,width: 140,color: Colors.blue,icon: Icons.videogame_asset,renderringWidget: summaryLearn,),
+              BottomButton(height: 60,width: 80,color: Colors.yellow,icon: Icons.games,renderringWidget: summaryLearn,)
 
 
             ],
