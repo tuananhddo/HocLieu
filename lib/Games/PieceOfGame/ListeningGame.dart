@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'package:hoclieu_clone_0_4/Components/WordComponent/WordDetailPage.dart';
 import 'package:hoclieu_clone_0_4/Constant/APIConstant.dart';
 import 'package:hoclieu_clone_0_4/fetchData/Unit.dart';
 import 'package:hoclieu_clone_0_4/fetchData/Word.dart';
@@ -72,16 +73,23 @@ class _ListeningGameState extends State<ListeningGame> {
                     setState(() {
                       isSure = !isSure;
                     });
+                    var randomGenerator = new Random();
+                    var randomGameIndex = randomGenerator.nextInt(4);
+
                     if(widget.listWords[currentChosen].id == chosenWord.id){
-//                      debugPrint('True Ans');
-                      var randomGenerator = new Random();
-                      var randomGameIndex = randomGenerator.nextInt(4);
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => widget.gameChooser(1,widget.listWords)),
+                        MaterialPageRoute(builder: (context) => widget.gameChooser(randomGameIndex,widget.listWords)),//Todo:Change 1 to random
                       );
                     }else{
-                      debugPrint('False Ans');
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => widget.gameChooser(randomGameIndex,widget.listWords)),//Todo:Change 1 to random
+                      );
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => WordDetailPage(unit: widget.unit,word: chosenWord,play: play),)
+                      );
                     }
                   },
                   child: Text('Chốt'),
