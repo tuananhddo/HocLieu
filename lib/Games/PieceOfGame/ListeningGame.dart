@@ -74,9 +74,11 @@ class _ListeningGameState extends State<ListeningGame> {
                     });
                     if(widget.listWords[currentChosen].id == chosenWord.id){
 //                      debugPrint('True Ans');
+                      var randomGenerator = new Random();
+                      var randomGameIndex = randomGenerator.nextInt(4);
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => Scaffold()),
+                        MaterialPageRoute(builder: (context) => widget.gameChooser(1,widget.listWords)),
                       );
                     }else{
                       debugPrint('False Ans');
