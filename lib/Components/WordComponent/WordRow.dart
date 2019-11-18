@@ -6,8 +6,6 @@ import 'package:hoclieu_clone_0_4/Constant/APIConstant.dart';
 import 'package:hoclieu_clone_0_4/fetchData/Unit.dart';
 import 'package:hoclieu_clone_0_4/fetchData/Word.dart';
 
-import 'AllWordPopUp.dart';
-
 class WordRow extends StatefulWidget{
 
   final int id;
@@ -55,7 +53,7 @@ class WordRowState extends State<WordRow> {
               widget.play(widget.word.sound);
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => WordDetailPage(word: widget.word,unit: widget.unit,)),
+                  MaterialPageRoute(builder: (context) => WordDetailPage(word: widget.word,unit: widget.unit,play: widget.play,)),
                 );
               }
           ),

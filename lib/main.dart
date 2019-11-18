@@ -15,10 +15,10 @@ class _MyAppState extends State<MyApp> {
 //  final appTitle = 'Drawer Demos';
   bool isLogin = false;
   FirebaseUser user;
-  void _handleLogin(List) {
+  void _handleLogin(list) {
     setState(() {
-      isLogin = List[0];
-      this.user = List[1];
+      isLogin = list[0];
+      this.user = list[1];
     });
   }
   @override

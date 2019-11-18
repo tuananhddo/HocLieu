@@ -1,4 +1,3 @@
-import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:hoclieu_clone_0_4/Constant/APIConstant.dart';
 import 'package:hoclieu_clone_0_4/fetchData/Unit.dart';
@@ -85,13 +84,13 @@ class _AllWordPopUpState extends State<AllWordPopUp>{
                                   child: Icon(Icons.arrow_back),
                                 ),
                                 index == snapshot.data.length - 1 ?
+                                BottomButton(title: 'Play',height: 60,width: 140,color: Colors.blue,icon: Icons.videogame_asset,renderringWidget: widget.playScreen,):
                                 OutlineButton(
                                   onPressed: (){
                                     _pageController.animateToPage(index+1, duration:  const Duration(milliseconds: 400), curve: Curves.easeInOut,);
                                   },
                                   child: Icon(Icons.arrow_forward),
-                                ):
-                                BottomButton(title: 'Play',height: 60,width: 140,color: Colors.blue,icon: Icons.videogame_asset,renderringWidget: widget.playScreen,),
+                                ),
 
                       ],
                             ),

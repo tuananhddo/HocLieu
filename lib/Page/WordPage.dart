@@ -1,5 +1,6 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'package:hoclieu_clone_0_4/Games/MainGamePage.dart';
 import 'package:hoclieu_clone_0_4/Components/WordComponent/BottomButton.dart';
 import 'package:hoclieu_clone_0_4/Components/WordComponent/AllWordPopUp.dart';
 import 'package:hoclieu_clone_0_4/Components/WordComponent/WordRow.dart';
@@ -22,11 +23,13 @@ class _WordPageState extends State<WordsPage>{
   AudioPlayer audioPlayer = AudioPlayer();
 
   Widget summaryLearn ;
+  Widget mainGame;
   @override
   void initState() {
     super.initState();
     words = fetchWords(baseURL,widget.unit.id);
-    summaryLearn = new AllWordPopUp(words: words,unit: widget.unit,play: play,playScreen: Text('Hello'),);
+    mainGame = new MainGamePage(words: words,unit: widget.unit,);
+    summaryLearn = new AllWordPopUp(words: words,unit: widget.unit,play: play,playScreen: mainGame,);
   }
   play(url) async {
     int result = await audioPlayer.play(baseURL+'/audio/'+url);
@@ -110,7 +113,7 @@ class _WordPageState extends State<WordsPage>{
           child: Row(
             children: <Widget>[
               BottomButton(title: 'HỌC',height: 60,width: 140,color: Colors.green,icon: Icons.chrome_reader_mode,renderringWidget: summaryLearn,),
-              BottomButton(title: 'Play',height: 60,width: 140,color: Colors.blue,icon: Icons.videogame_asset,renderringWidget: summaryLearn,),
+              BottomButton(title: 'Play',height: 60,width: 140,color: Colors.blue,icon: Icons.videogame_asset,renderringWidget: mainGame,),
               BottomButton(height: 60,width: 80,color: Colors.yellow,icon: Icons.games,renderringWidget: summaryLearn,)
 
 

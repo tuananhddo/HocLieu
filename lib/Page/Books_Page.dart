@@ -10,7 +10,7 @@ class BooksPage extends StatefulWidget {
   final bool isLogin ;
   final Function(List) handleLogin;
 //  final sourceURL = "127.0.0.1:1998/model2.jpg";// change to 10.0.2.2 with local device
-  FirebaseUser user;
+  final FirebaseUser user;
 
   BooksPage({Key key, this.title, this.handleLogin,this.isLogin,this.user}) : super(key: key);
 
@@ -50,7 +50,7 @@ class _BookPageState extends State<BooksPage>{
                             leading:new ClipRRect(
                                 borderRadius: new BorderRadius.circular(100.0),
                                 child:Image.network(
-                                  "${baseURL}/image/${snapshot.data[index].thumbnail_image}",
+                                  "$baseURL/image/${snapshot.data[index].thumbnail_image}",
                                   height: 50,
                                   width: 50,
                                   scale: 0.6,

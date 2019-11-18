@@ -8,7 +8,7 @@ class MyHomePage extends StatefulWidget {
   final String title;
   final bool isLogin ;
   final Function(List) handleLogin;
-  FirebaseUser user;
+  final FirebaseUser user;
 
   MyHomePage({Key key, this.title, this.handleLogin,this.isLogin,this.user}) : super(key: key);
 
