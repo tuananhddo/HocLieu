@@ -33,7 +33,18 @@ class BottomButtonState extends State<BottomButton> {
           margin: EdgeInsets.all(10.0),
           decoration: new BoxDecoration(
               color: widget.color,
-              borderRadius: new BorderRadius.circular(40.0)
+              borderRadius: new BorderRadius.circular(40.0),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.white,
+                  blurRadius: 10.0, // has the effect of softening the shadow
+                  spreadRadius: 10.0, // has the effect of extending the shadow
+                  offset: Offset(
+                    10.0, // horizontal, move right 10
+                    10.0, // vertical, move down 10
+                  ),
+                )
+              ]
           ),
           child: Center(
             child: Row(

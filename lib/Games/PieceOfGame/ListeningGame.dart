@@ -1,6 +1,8 @@
 import 'dart:math';
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'package:hoclieu_clone_0_4/Constant/APIConstant.dart';
 import 'package:hoclieu_clone_0_4/fetchData/Unit.dart';
 import 'package:hoclieu_clone_0_4/fetchData/Word.dart';
 
@@ -13,7 +15,7 @@ class ListeningGame extends StatefulWidget {
   final currentTrue;
   final currentFalse;
   final Map learnedMap;
-  ListeningGame({Key key,this.listWords,this.gameChooser,this.currentFalse,this.currentTrue,this.unit,this.learnedMap}) : super(key: key);
+  ListeningGame({Key key,this.listWords,this.gameChooser,this.currentFalse,this.currentTrue,this.unit,this.learnedMap,}) : super(key: key);
 
   @override
   _ListeningGameState createState() => new _ListeningGameState();
@@ -22,16 +24,36 @@ class ListeningGame extends StatefulWidget {
 class _ListeningGameState extends State<ListeningGame> {
   
   Word chosenWord;
-  bool buttonPress;
+  List<bool> buttonPress;
+  int currentChosen ;
+  bool isSure;
+  AudioPlayer audioPlayer = AudioPlayer();
+
   @override
   void initState() {
     super.initState();
     var randomGenerator = new Random();
     var index = randomGenerator.nextInt(widget.listWords.length);
+    isSure = false;
+    currentChosen = -1;
     chosenWord = widget.listWords[index];
-    buttonPress = false;
+    buttonPress = new List<bool>.generate(widget.listWords.length, (int index) =>  false);
   }
-
+  play(url) async {
+    await audioPlayer.play(baseURL+'/audio/'+url);
+  }
+  onPress(int index){
+    if(buttonPress[index] == false){
+      setState(() {
+        buttonPress[index] = true;
+        if(currentChosen != -1) {
+          buttonPress[currentChosen] = false;
+        }
+        currentChosen = index;
+      });
+    }
+    play(widget.listWords[index].sound);
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,20 +70,27 @@ class _ListeningGameState extends State<ListeningGame> {
                 RaisedButton(
                   onPressed: (){
                     setState(() {
-                      buttonPress = !buttonPress;
+                      isSure = !isSure;
                     });
+                    if(widget.listWords[currentChosen].id == chosenWord.id){
+//                      debugPrint('True Ans');
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Scaffold()),
+                      );
+                    }else{
+                      debugPrint('False Ans');
+                    }
                   },
                   child: Text('Chốt'),
-                  color: (buttonPress == false) ? Colors.red  : Colors.white,
+                  color: (isSure == false) ? Colors.red  : Colors.white,
                 ):
                 RaisedButton(
-                  onPressed: (){
-                    setState(() {
-                      buttonPress = !buttonPress;
-                    });
-                  },
+//                  key: ValueKey(index),
+                  onPressed: ()=> onPress(index),
                   child: Icon(Icons.volume_up),
-                  color: Colors.blue,
+//                  child: Text(widget.listWords[index].name),
+                  color: (currentChosen == index) ? Colors.blue : Colors.white,
                 );
               }
             ),

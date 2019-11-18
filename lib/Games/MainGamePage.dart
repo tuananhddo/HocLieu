@@ -13,7 +13,8 @@ class MainGamePage extends StatefulWidget {
   final Future<List<Word>> words;
   final numberOfPieceGame = 4;
   final Unit unit;
-  MainGamePage({Key key,this.words,this.unit}) : super(key: key);
+  final Function play;
+  MainGamePage({Key key,this.words,this.unit,this.play}) : super(key: key);
 
   @override
   _MainGamePageState createState() => new _MainGamePageState();
@@ -52,7 +53,7 @@ class _MainGamePageState extends State<MainGamePage> {
               int randomGameIndex = randomGenerator.nextInt(widget.numberOfPieceGame);
               switch(1){
                 case 1:
-                  return ListeningGame(listWords: snapshot.data,gameChooser: gameChooser,currentFalse: 0,currentTrue: 0,unit: widget.unit,learnedMap: learnedMap,);
+                  return ListeningGame(listWords: snapshot.data,gameChooser: gameChooser,currentFalse: 0,currentTrue: 0,unit: widget.unit,learnedMap: learnedMap);
                 case 2:
                   return ReadingGame(listWords: snapshot.data,);
                 case 3:
