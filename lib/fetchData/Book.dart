@@ -12,6 +12,16 @@ Future<List<Book>> fetchBooks(baseURL) async {
     throw Exception('Failed to load books');
   }
 }
+Future<List<Book>> fetchBookById(baseURL,id) async {
+  final response = await http.get('$baseURL/book/id/$id');
+  if (response.statusCode == 200) {
+    List l = json.decode(response.body) as List;
+    List<Book> books = l.map((model)=> Book.fromJson(model)).toList();
+    return books;
+  } else {
+    throw Exception('Failed to load books by ID');
+  }
+}
 class Book {
   int id;
   String book_name;
