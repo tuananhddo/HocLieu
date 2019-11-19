@@ -24,22 +24,22 @@ Future<List<Book>> fetchBookById(baseURL,id) async {
 }
 class Book {
   int id;
-  String book_name;
-  String thumbnail_image;
+  String bookName;
+  String thumbnailImage;
 
-  Book({this.id, this.book_name, this.thumbnail_image});
+  Book({this.id, this.bookName, this.thumbnailImage});
 
   factory Book.fromJson(Map<String, dynamic> json) {
     return Book(
         id : json['id'],
-        book_name : json['book_name'],
-        thumbnail_image : json['thumbnail_image']
+        bookName : json['book_name'],
+        thumbnailImage : json['thumbnail_image']
     );
   }
   Map<String, dynamic> toJson() =>
       {
         'id':id,
-        'book_name': book_name,
-        'thumbnail_image': thumbnail_image,
+        'book_name': bookName,
+        'thumbnail_image': thumbnailImage,
       };
 }
