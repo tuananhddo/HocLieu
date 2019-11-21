@@ -30,7 +30,7 @@ class _MyAppState extends State<MyApp> {
       routes: {
         '/': (context) => MyHomePage(title:'Người dùng',handleLogin: _handleLogin,isLogin: isLogin,user: user,),
         '/info': (context) => InfomationScreen(),
-        '/result': (context) => ResultPage(title: 'Kết quả học tập',isLogin: isLogin),
+        '/result': (context) => ResultPage(title: 'Kết quả học tập',isLogin: isLogin,user:user),
         '/books': (context) => BooksPage(),
 
       },

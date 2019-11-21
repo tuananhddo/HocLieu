@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hoclieu_clone_0_4/Page/Unit_Page.dart';
+import 'package:hoclieu_clone_0_4/fetchData/LearnedWord.dart';
+import 'package:hoclieu_clone_0_4/fetchData/Word.dart';
 import 'NavigationDrawer.dart';
 import '../fetchData/Book.dart';
 import '../Constant/APIConstant.dart';
@@ -50,14 +52,14 @@ class _BookPageState extends State<BooksPage>{
                             leading:new ClipRRect(
                                 borderRadius: new BorderRadius.circular(100.0),
                                 child:Image.network(
-                                  "$baseURL/image/${snapshot.data[index].thumbnail_image}",
+                                  "$baseURL/image/${snapshot.data[index].thumbnailImage}",
                                   height: 50,
                                   width: 50,
                                   scale: 0.6,
                                   fit: BoxFit.fill,
                                 )
                             ),
-                            title: Text(snapshot.data[index].book_name),
+                            title: Text(snapshot.data[index].bookName),
 //                            trailing: OutlineButton(
 //                                onPressed: (){},
 //                                child: Text('Tai Anh'),
