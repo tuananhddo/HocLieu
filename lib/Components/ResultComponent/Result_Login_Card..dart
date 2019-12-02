@@ -51,7 +51,7 @@ class ResultLoginCardState extends State<ResultLoginCard> {
                           future: fetchWordById(baseURL,snapshot.data[index].wordId),
                           builder: (context, snapshot) {
                             if(snapshot.hasData){
-                              return WordRow(word : snapshot.data,play: play,id:snapshot.data.id,unit: new Unit.emptyUnit(),);
+                              return WordRow(word : snapshot.data,play: play,id:snapshot.data.id,unit: new Unit.emptyUnit(),readOnly: true,);
                             }
                             else{return Text('Loading./.');}
                           },
