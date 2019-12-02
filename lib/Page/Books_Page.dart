@@ -1,8 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hoclieu_clone_0_4/Page/Unit_Page.dart';
-import 'package:hoclieu_clone_0_4/fetchData/LearnedWord.dart';
-import 'package:hoclieu_clone_0_4/fetchData/Word.dart';
 import 'NavigationDrawer.dart';
 import '../fetchData/Book.dart';
 import '../Constant/APIConstant.dart';
