@@ -13,7 +13,8 @@ class WordRow extends StatefulWidget{
   final Function(String) play;
   final Unit unit;
   final bool readOnly;
-  WordRow({Key key, this.word,this.play,this.id,this.unit,this.readOnly})
+  final learnedSkill;
+  WordRow({Key key, this.word,this.play,this.id,this.unit,this.learnedSkill,this.readOnly})
       : super(key: key);
 
   @override
@@ -31,7 +32,16 @@ class WordRowState extends State<WordRow> {
   }
   @override
   Widget build(BuildContext context) {
-    return Column(
+    if(widget.learnedSkill.isNotEmpty){
+      setState(() {
+          var newLearnedSkill = new List<bool>.from(widget.learnedSkill);
+          var allChecked = widget.learnedSkill.every((val) => val == true );
+          newLearnedSkill.add(allChecked);
+          this.isChecked = new List<bool>.from(newLearnedSkill);
+
+      });
+    }
+      return Column(
         children: <Widget>[
           ListTile(
             leading: Image.network(

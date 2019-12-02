@@ -93,7 +93,7 @@ class _ListeningGameState extends State<ListeningGame> {
                     }
                   },
                   child: Text('Chốt'),
-                  color: (isSure == false) ? Colors.red  : Colors.white,
+                  color: (isSure == false) ? Colors.green  : Colors.white,
                 ):
                 RaisedButton(
 //                  key: ValueKey(index),

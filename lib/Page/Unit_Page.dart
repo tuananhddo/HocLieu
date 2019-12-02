@@ -38,7 +38,7 @@ class _UnitPageState extends State<UnitsPage>{
                           ListTile(
                             title: Row(children: <Widget>[
                                 Text('Unit ' + snapshot.data[index].unit_number.toString() + '\t',style: TextStyle(color: Colors.blue),),
-                                Text(snapshot.data[index].unit_name),
+                                Text(snapshot.data[index].unit_name != null ? snapshot.data[index].unit_name : ""),
                             ]),
                             onTap: (){
                               Navigator.push(

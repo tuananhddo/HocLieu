@@ -31,7 +31,7 @@ class _MainGamePageState extends State<MainGamePage> {
       case 1:
         return ListeningGame(listWords: wordData,gameChooser: gameChooser,);
       case 2:
-        return ReadingGame(listWords: wordData,);
+        return ReadingGame(listWords: wordData,gameChooser: gameChooser,);
       case 3:
         return SpeakingGame(listWords: wordData,);
       case 4:
@@ -51,11 +51,11 @@ class _MainGamePageState extends State<MainGamePage> {
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               int randomGameIndex = randomGenerator.nextInt(widget.numberOfPieceGame);
-              switch(1){
+              switch(2){//TODO change 1 to random
                 case 1:
                   return ListeningGame(listWords: snapshot.data,gameChooser: gameChooser,currentFalse: 0,currentTrue: 0,unit: widget.unit,learnedMap: learnedMap);
                 case 2:
-                  return ReadingGame(listWords: snapshot.data,);
+                  return ReadingGame(listWords: snapshot.data,gameChooser: gameChooser,currentFalse: 0,currentTrue: 0,unit: widget.unit,learnedMap: learnedMap);
                 case 3:
                   return SpeakingGame(listWords: snapshot.data,);
                 case 4:
