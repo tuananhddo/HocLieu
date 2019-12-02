@@ -16,7 +16,7 @@ class Unit {
   int id;
   String unit_name;
   int unit_number;
-
+  Unit.emptyUnit();
   Unit({this.id, this.unit_name, this.unit_number});
 
   factory Unit.fromJson(Map<String, dynamic> json) {

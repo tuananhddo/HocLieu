@@ -17,7 +17,7 @@ class ResultPage extends StatelessWidget {
           child:
             isLogin
               ?
-            Result_Login_Card(user:user)
+            ResultLoginCard(user:user)
                 :
             Card(
               child: ListTile(

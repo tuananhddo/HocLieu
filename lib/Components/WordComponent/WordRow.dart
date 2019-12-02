@@ -12,7 +12,8 @@ class WordRow extends StatefulWidget{
   final Word word ;
   final Function(String) play;
   final Unit unit;
-  WordRow({Key key, this.word,this.play,this.id,this.unit})
+  final bool containDetail;
+  WordRow({Key key, this.word,this.play,this.id,this.unit,this.containDetail})
       : super(key: key);
 
   @override
@@ -21,7 +22,7 @@ class WordRow extends StatefulWidget{
 class WordRowState extends State<WordRow> {
 
   var isChecked = [false,false,false,false,false];
-  List<Widget> cusomtCheckboxs ;
+//  List<Widget> cusomtCheckboxs ;
   void setCheckBoxChecked(checkBoxId){
     setState(() {
       this.isChecked[checkBoxId] = !isChecked[checkBoxId];
@@ -50,6 +51,9 @@ class WordRowState extends State<WordRow> {
             ]),
             subtitle: Text(widget.word.description),
             onTap: (){
+              if(widget.containDetail == false){
+                return;
+              }
               widget.play(widget.word.sound);
                 Navigator.push(
                   context,

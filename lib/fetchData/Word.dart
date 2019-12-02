@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 
@@ -20,7 +19,7 @@ Future<Word> fetchWordById(baseURL,id) async {
     var word = Word.fromJson(wordMap);
     return word;
   } else {
-    throw Exception('Failed to load books by ID');
+    throw Exception('Failed to load word by ID');
   }
 }
 class Word {
