@@ -79,12 +79,12 @@ class _ListeningGameState extends State<ListeningGame> {
                     if(widget.listWords[currentChosen].id == chosenWord.id){
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => widget.gameChooser(randomGameIndex,widget.listWords)),//Todo:Change 1 to random
+                        MaterialPageRoute(builder: (context) => widget.gameChooser(randomGameIndex,widget.listWords,widget.unit)),//Todo:Change 1 to random
                       );
                     }else{
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => widget.gameChooser(randomGameIndex,widget.listWords)),//Todo:Change 1 to random
+                        MaterialPageRoute(builder: (context) => widget.gameChooser(randomGameIndex,widget.listWords,widget.unit)),//Todo:Change 1 to random
                       );
                       Navigator.push(
                         context,

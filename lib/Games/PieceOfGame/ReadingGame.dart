@@ -50,13 +50,13 @@ class _ReadingGameState extends State<ReadingGame> {
           rightAns = true;
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => widget.gameChooser(randomGameIndex,widget.listWords)),//Todo:Change 1 to random
+            MaterialPageRoute(builder: (context) => widget.gameChooser(randomGameIndex,widget.listWords,widget.unit)),//Todo:Change 1 to random
           );
         }else {
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) =>
-                widget.gameChooser(randomGameIndex, widget.listWords)), //Todo:Change 1 to random
+                widget.gameChooser(randomGameIndex, widget.listWords,widget.unit)), //Todo:Change 1 to random
           );
           Navigator.push(
               context,

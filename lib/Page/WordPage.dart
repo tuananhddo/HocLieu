@@ -1,4 +1,5 @@
 import 'package:audioplayers/audioplayers.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hoclieu_clone_0_4/Components/WordComponent/WordHeader..dart';
 import 'package:hoclieu_clone_0_4/Games/MainGamePage.dart';
@@ -13,7 +14,9 @@ class WordsPage extends StatefulWidget {
 
   final String title = 'Word Page';
   final Unit unit;
-  WordsPage({Key key,this.unit}) : super(key: key);
+  final FirebaseUser user;
+
+  WordsPage({Key key,this.unit,this.user}) : super(key: key);
 
   @override
   _WordPageState createState() => new _WordPageState();
@@ -46,12 +49,14 @@ class _WordPageState extends State<WordsPage>{
           child: FutureBuilder<List<Word>>(
             future: words,
             builder: (context, snapshot) {
+              double iconSpace = 40;
               if (snapshot.hasData) {
                 return ListView.builder(
                   itemCount: snapshot.data.length + 2,
                   itemBuilder: (BuildContext context,int index){
                     if(index == 0){
                       return WordHeader(unit: widget.unit,);
+
                     }
                     if(index == snapshot.data.length + 1){
                       return ListTile(

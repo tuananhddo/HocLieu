@@ -26,18 +26,18 @@ class _MainGamePageState extends State<MainGamePage> {
   void initState() {
     super.initState();
   }
-  Widget gameChooser(int randomGameIndex,wordData){
+  Widget gameChooser(int randomGameIndex,wordData,unit){
     switch(randomGameIndex){
       case 1:
-        return ListeningGame(listWords: wordData,gameChooser: gameChooser,);
+        return ListeningGame(listWords: wordData,gameChooser: gameChooser,unit: unit,);
       case 2:
-        return ReadingGame(listWords: wordData,gameChooser: gameChooser,);
+        return ReadingGame(listWords: wordData,gameChooser: gameChooser,unit: unit,);
       case 3:
-        return SpeakingGame(listWords: wordData,);
+        return SpeakingGame(listWords: wordData,gameChooser: gameChooser,unit:unit);
       case 4:
-        return WritingGame(listWords: wordData,);
+        return ListeningGame(listWords: wordData,gameChooser: gameChooser,unit: unit,);
       default:
-        return Text('Chooser Error');
+        return ListeningGame(listWords: wordData,gameChooser: gameChooser,unit: unit,);
     }
   }
 

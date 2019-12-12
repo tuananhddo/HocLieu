@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hoclieu_clone_0_4/Constant/APIConstant.dart';
 import 'package:hoclieu_clone_0_4/Page/WordPage.dart';
@@ -7,7 +8,9 @@ class UnitsPage extends StatefulWidget {
 
   final String title = 'Unit Page';
   final int bookId;
-  UnitsPage({Key key,this.bookId}) : super(key: key);
+  final FirebaseUser user;
+
+  UnitsPage({Key key,this.bookId,this.user}) : super(key: key);
 
   @override
   _UnitPageState createState() => new _UnitPageState();
@@ -43,7 +46,7 @@ class _UnitPageState extends State<UnitsPage>{
                             onTap: (){
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => WordsPage(unit : snapshot.data[index])),
+                                MaterialPageRoute(builder: (context) => WordsPage(unit : snapshot.data[index],user: widget.user,)),
                               );
                             },
                           ),

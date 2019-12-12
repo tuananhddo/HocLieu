@@ -44,7 +44,7 @@ class _BookPageState extends State<BooksPage>{
                             onTap: (){
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => UnitsPage(bookId: snapshot.data[index].id)),
+                                MaterialPageRoute(builder: (context) => UnitsPage(bookId: snapshot.data[index].id,user: widget.user,)),
                               );
                             },
                             leading:new ClipRRect(
