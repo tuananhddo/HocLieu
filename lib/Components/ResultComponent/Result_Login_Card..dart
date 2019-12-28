@@ -58,11 +58,15 @@ class ResultLoginCardState extends State<ResultLoginCard> {
                     );
                 }
               );
-            } else if (snapshot.hasError) {
-              return Text("${snapshot.error}");
+            } else {
+              return Center(
+                child: Text(
+                  "",
+                ),
+              );
             }
             // By default, show a loading spinner.
-            return CircularProgressIndicator();
+//            return CircularProgressIndicator();
           },
         ),
       ],

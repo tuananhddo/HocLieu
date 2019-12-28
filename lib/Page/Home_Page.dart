@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../Components/LoginCard.dart';
 import '../Components/learningSkillLine.dart';
 import 'NavigationDrawer.dart';
+
 class MyHomePage extends StatefulWidget {
 
   final String title;
@@ -29,10 +30,13 @@ class _HomePageState extends State<MyHomePage>{
               Divider(thickness: 1,),
               Column(
                   children:<Widget>[
-                    Text('Chọn kỹ năng bạn muốn luyện'),
+                    Padding(
+                      padding: EdgeInsets.all(5),
+                      child: Text('Chọn kỹ năng bạn muốn luyện'),
+
+                    ),
                     LearningSkillLine(title :'Nghe',icon: Icons.headset,iconColor: Colors.yellow,),
                     LearningSkillLine(title :'Nói',icon: Icons.mic,iconColor: Colors.blue,),
-
                     LearningSkillLine(title :'Viết',icon: Icons.mode_edit,iconColor: Colors.green,),
                     LearningSkillLine(title :'Đọc',icon: Icons.chrome_reader_mode,iconColor: Colors.red,),
 

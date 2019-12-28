@@ -49,7 +49,7 @@ class _WordPageState extends State<WordsPage>{
           child: FutureBuilder<List<Word>>(
             future: words,
             builder: (context, snapshot) {
-              double iconSpace = 40;
+//              double iconSpace = 40;
               if (snapshot.hasData) {
                 return ListView.builder(
                   itemCount: snapshot.data.length + 2,
@@ -78,9 +78,9 @@ class _WordPageState extends State<WordsPage>{
         bottomNavigationBar: BottomAppBar(
           child: Row(
             children: <Widget>[
-              BottomButton(title: 'HỌC',height: 60,width: 140,color: Colors.green,icon: Icons.chrome_reader_mode,renderringWidget: summaryLearn,),
-              BottomButton(title: 'Play',height: 60,width: 140,color: Colors.blue,icon: Icons.videogame_asset,renderringWidget: mainGame,),
-              BottomButton(height: 60,width: 80,color: Colors.yellow,icon: Icons.games,renderringWidget: summaryLearn,)
+              BottomButton(title: 'HỌC',height: 60,width: 175,color: Colors.green,icon: Icons.chrome_reader_mode,renderringWidget: summaryLearn,),
+              BottomButton(title: 'CHƠI',height: 60,width: 175,color: Colors.yellow,icon: Icons.videogame_asset,renderringWidget: mainGame,),
+//              BottomButton(height: 60,width: 80,color: Colors.yellow,icon: Icons.games,renderringWidget: summaryLearn,)
 
 
             ],

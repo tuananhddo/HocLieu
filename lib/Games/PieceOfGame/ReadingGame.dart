@@ -77,17 +77,27 @@ class _ReadingGameState extends State<ReadingGame> {
       appBar: AppBar(title: Text(widget.title)),
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(chosenWord.name),
+            Padding(
+              padding: EdgeInsets.all(5.0),
+              child: Text(
+                  chosenWord.description,
+                style: TextStyle(fontSize: 22),
+              )
+            ),
             ListView.builder(
                 shrinkWrap: true,
                 itemCount: widget.listWords.length,
                 itemBuilder: (BuildContext context,int index){
-                  return
-                  RaisedButton(
-                    onPressed: ()=> onPress(index),
-                    child: Text(widget.listWords[index].name),
-                    color: (currentChosen == index) ? (rightAns == true ? Colors.blue : Colors.red) : Colors.white,
+                  return Padding(
+                    padding: EdgeInsets.all(5.0),
+                    child: RaisedButton(
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
+                      onPressed: ()=> onPress(index),
+                      child: Text(widget.listWords[index].name),
+                      color: (currentChosen == index) ? (rightAns == true ? Colors.blue : Colors.red) : Colors.white,
+                    ),
                   );
                 }
             ),

@@ -2,10 +2,18 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:hoclieu_clone_0_4/Constant/APIConstant.dart';
+import 'package:http/http.dart' as http;
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 final GoogleSignIn googleSignIn = GoogleSignIn();
 
+Future<void> checkUser(baseURL,email) async {
+  final response = await http.get('$baseURL/user/$email',);
+  if (response.statusCode != 200) {
+    throw Exception('Failed to load data');
+  }
+}
 Future<List> signInWithGoogle() async {
   final GoogleSignInAccount googleSignInAccount = await googleSignIn.signIn();
   try{
@@ -23,6 +31,7 @@ Future<List> signInWithGoogle() async {
     final FirebaseUser currentUser = await _auth.currentUser();
     assert(user.uid == currentUser.uid);
 //    print('${user}');
+    checkUser(baseURL, user.email);
     return [true,user];
     
   }catch(Exception){
@@ -58,7 +67,7 @@ Widget signInButton(data,context,callback) {
       }
       );
     },
-//    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
     highlightElevation: 0,
     borderSide: BorderSide(color: Colors.grey),
     child: Padding(
@@ -67,6 +76,8 @@ Widget signInButton(data,context,callback) {
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
+          Image(image: AssetImage("assets/google_logo.png"), height: 35.0),
+
           Padding(
             padding: const EdgeInsets.only(left: 10),
             child: Text(

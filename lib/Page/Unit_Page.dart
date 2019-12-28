@@ -56,7 +56,11 @@ class _UnitPageState extends State<UnitsPage>{
 
                 );
               } else if (snapshot.hasError) {
-                return Text("${snapshot.error}");
+                return Padding(
+                  padding: EdgeInsets.all(20),
+                  child: Text("Sách hiện đang đang được xây dựng",
+                    style: TextStyle(fontSize: 16),),
+                );
               }
               // By default, show a loading spinner.
               return CircularProgressIndicator();

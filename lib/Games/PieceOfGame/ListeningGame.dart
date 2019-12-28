@@ -61,14 +61,24 @@ class _ListeningGameState extends State<ListeningGame> {
       appBar: AppBar(title: Text(widget.title)),
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+
           children: <Widget>[
-            Text(chosenWord.name),
+            Padding(
+                padding: EdgeInsets.all(5.0),
+                child: Text(
+                  chosenWord.name,
+                  style: TextStyle(fontSize: 22),
+                )
+            ),
             ListView.builder(
                 shrinkWrap: true,
                 itemCount: widget.listWords.length + 1,
               itemBuilder: (BuildContext context,int index){
                 return (index == widget.listWords.length) ?
                 RaisedButton(
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
+
                   onPressed: (){
                     setState(() {
                       isSure = !isSure;
@@ -96,7 +106,7 @@ class _ListeningGameState extends State<ListeningGame> {
                   color: (isSure == false) ? Colors.green  : Colors.white,
                 ):
                 RaisedButton(
-//                  key: ValueKey(index),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
                   onPressed: ()=> onPress(index),
                   child: Icon(Icons.volume_up),
 //                  child: Text(widget.listWords[index].name),
