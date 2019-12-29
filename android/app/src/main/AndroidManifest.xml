@@ -10,7 +10,7 @@
 
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="hoclieu_clone_0_4"
+        android:label="Từ vựng"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
