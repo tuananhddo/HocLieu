@@ -103,7 +103,13 @@ class _SpeakingGameState extends State<SpeakingGame> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Text(chosenWord.name),
+            Padding(
+              padding: EdgeInsets.all(20.0),
+              child: Text(
+                chosenWord.name,
+                style: TextStyle(color: Colors.green,fontSize: 20),
+              ),
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
