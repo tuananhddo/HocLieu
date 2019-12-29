@@ -7,6 +7,7 @@
 ## Cơ sở dữ Liệu
 ![Image](assets/illustration/csdl.JPG)
 ## Minh Họa
+<img src="https://github.com/favicon.ico" width="48">
 
 ![Image](assets/illustration/mh1.jpg =500x500)
 ![Image](assets/illustration/mh2.jpg =500x500)
