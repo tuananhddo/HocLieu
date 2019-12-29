@@ -8,7 +8,7 @@
 ![Image](assets/illustration/csdl.JPG)
 ## Minh Họa
 
-![Image](assets/illustration/mh1.jpg = 500x500)
-![Image](assets/illustration/mh2.jpg = 500x500)
+![Image](assets/illustration/mh1.jpg =500x500)
+![Image](assets/illustration/mh2.jpg =500x500)
 ![Image](assets/illustration/mh3.jpg)
 ![Image](assets/illustration/mh4.jpg)
