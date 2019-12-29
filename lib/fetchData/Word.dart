@@ -22,6 +22,13 @@ Future<Word> fetchWordById(baseURL,id) async {
     throw Exception('Failed to load word by ID');
   }
 }
+Future<void> updateLearned(baseURL,data) async {
+  var bodyEncoded = json.encode(data);
+  final response = await http.post('$baseURL/user/learned/update',body: bodyEncoded);
+  if (response.statusCode != 200) {
+    throw Exception('Failed to load data');
+  }
+}
 class Word {
   int id;
   String name;

@@ -26,6 +26,7 @@ Widget navigationDrawer(context) {
           title: Text('Sách'),
           onTap: () {
             if (page != 'BooksPage') {
+              Navigator.popUntil(context, ModalRoute.withName('/'));
               Navigator.pushNamed(context, '/books');
             } else {
               Navigator.pop(context);
@@ -36,7 +37,9 @@ Widget navigationDrawer(context) {
           title: Text('Kết quả học'),
           onTap: () {
             if (page != 'ResultPage') {
-              Navigator.pushNamed(context, '/result');
+                Navigator.popUntil(context, ModalRoute.withName('/'));
+                Navigator.pushNamed(context, '/result');
+
             } else {
               Navigator.pop(context);
             }

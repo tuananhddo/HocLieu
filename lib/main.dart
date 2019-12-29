@@ -31,7 +31,7 @@ class _MyAppState extends State<MyApp> {
         '/': (context) => MyHomePage(title:'Người dùng',handleLogin: _handleLogin,isLogin: isLogin,user: user,),
         '/info': (context) => InfomationScreen(),
         '/result': (context) => ResultPage(title: 'Kết quả học tập',isLogin: isLogin,user:user),
-        '/books': (context) => BooksPage(),
+        '/books': (context) => BooksPage(user: user,),
 
       },
     );

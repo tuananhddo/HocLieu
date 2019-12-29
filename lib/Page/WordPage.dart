@@ -32,7 +32,7 @@ class _WordPageState extends State<WordsPage>{
   void initState() {
     super.initState();
     words = fetchWords(baseURL,widget.unit.id);
-    mainGame = new MainGamePage(words: words,unit: widget.unit,play: play);
+    mainGame = new MainGamePage(words: words,unit: widget.unit,play: play,user: widget.user,);
     summaryLearn = new AllWordPopUp(words: words,unit: widget.unit,play: play,playScreen: mainGame,);
   }
   play(url) async {

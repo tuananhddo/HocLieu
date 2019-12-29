@@ -19,7 +19,7 @@ class _WordHeaderState extends State<WordHeader> {
   Widget build(BuildContext context) {
     double iconSpace = 40;
     return Padding(
-      padding: EdgeInsets.all(12.0),
+      padding: EdgeInsets.all(4.0),
       child: Column(
           children: <Widget>[
             (widget.unit.id != -1) ?

@@ -35,28 +35,29 @@ class ResultLoginCardState extends State<ResultLoginCard> {
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return ListView.builder(
+                  physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   itemCount: snapshot.data.length,
-                itemBuilder: (BuildContext context,int index) {
-                  return FutureBuilder<Word>(
-                          future: fetchWordById(baseURL,snapshot.data[index].wordId),
-                          builder: (context, word) {
-                            if(word.hasData){
-                              var listening = snapshot.data[index].listening;
-                              var speaking = snapshot.data[index].speaking;
-                              var reading = snapshot.data[index].reading;
-                              var writing = snapshot.data[index].writing;
+                  itemBuilder: (BuildContext context,int index) {
+                    return FutureBuilder<Word>(
+                      future: fetchWordById(baseURL,snapshot.data[index].wordId),
+                      builder: (context, word) {
+                        if(word.hasData){
+                          var listening = snapshot.data[index].listening;
+                          var speaking = snapshot.data[index].speaking;
+                          var reading = snapshot.data[index].reading;
+                          var writing = snapshot.data[index].writing;
 
-                              return WordRow(
-                                word : word.data,play: (nothing){},id:word.data.id,
-                                unit: new Unit.emptyUnit(),readOnly: true,
-                                learnedSkill: [listening,speaking,reading,writing],);
-                            }
-                            else{return CircularProgressIndicator();}
-                          },
+                          return WordRow(
+                            word : word.data,play: (nothing){},id:word.data.id,
+                            unit: new Unit.emptyUnit(),readOnly: true,
+                            learnedSkill: [listening,speaking,reading,writing],);
+                        }
+                        else{return CircularProgressIndicator();}
+                      },
 
                     );
-                }
+                  }
               );
             } else {
               return Center(

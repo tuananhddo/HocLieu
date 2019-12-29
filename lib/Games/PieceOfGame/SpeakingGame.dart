@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:audioplayers/audioplayers.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hoclieu_clone_0_4/Components/WordComponent/WordDetailPage.dart';
 import 'package:hoclieu_clone_0_4/Constant/APIConstant.dart';
@@ -14,8 +15,9 @@ class SpeakingGame extends StatefulWidget {
   final List<Word> listWords;
   final Function gameChooser;
   final Unit unit;
+  final FirebaseUser user;
 
-  SpeakingGame({Key key,this.listWords,this.gameChooser,this.unit}) : super(key: key);
+  SpeakingGame({Key key,this.listWords,this.gameChooser,this.unit,this.user}) : super(key: key);
 
   @override
   _SpeakingGameState createState() => new _SpeakingGameState();
@@ -58,6 +60,23 @@ class _SpeakingGameState extends State<SpeakingGame> {
             var randomGameIndex = randomGenerator.nextInt(4);
 
             if(resultText == chosenWord.name){
+
+
+              if(widget.user != null) {
+                var data = {
+                  "email": widget.user.email,
+                  "updateData": [
+                    {
+                      "word_id":chosenWord.id,
+                      "listening":"",
+                      "speaking":true,
+                      "reading":"",
+                      "writing":""
+                    }
+                  ]
+                };
+                updateLearned(baseURL, data);
+              }
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => widget.gameChooser(randomGameIndex,widget.listWords,widget.unit)),
