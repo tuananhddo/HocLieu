@@ -7,9 +7,9 @@
 ## Cơ sở dữ Liệu
 ![Image](assets/illustration/csdl.JPG)
 ## Minh Họa
-<img src="assets/illustration/mh1.jpg" width="100" height="100">
-<img src="assets/illustration/mh2.jpg" width="100" height="100">
-<img src="assets/illustration/mh3.jpg" width="100" height="100">
-<img src="assets/illustration/mh4.jpg" width="100" height="100">
-<img src="assets/illustration/mh5.jpg" width="100" height="100">
+<img src="assets/illustration/mh1.jpg" width="400" height="400">
+<img src="assets/illustration/mh2.jpg" width="400" height="400">
+<img src="assets/illustration/mh3.jpg" width="400" height="400">
+<img src="assets/illustration/mh4.jpg" width="400" height="400">
+<img src="assets/illustration/mh5.jpg" width="400" height="400">
 
