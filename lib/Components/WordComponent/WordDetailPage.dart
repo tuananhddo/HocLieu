@@ -48,24 +48,29 @@ class WordDetailPage extends StatelessWidget {
               ),
 
             ),
-            Text(word.translated_name,style: TextStyle(fontSize: 18,color: Colors.blue),),
-            Text(word.description,style: TextStyle(fontSize: 20,),),
+            Padding(
+              padding: EdgeInsets.all(2.5),
+              child: Text(word.translated_name,style: TextStyle(fontSize: 18,color: Colors.blue),),
+            ),
+            Padding(
+              padding: EdgeInsets.all(2.5),
+              child: Text(word.description,style: TextStyle(fontSize: 20,),),
+            ),
             Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  new Opacity(
-                    opacity: 0.0,
+                  Padding(
+                    padding: EdgeInsets.all(20.0),
                     child: OutlineButton(
-                      onPressed: null,
-                    ),
-                  ),
-                  OutlineButton(
-                    onPressed:  (){
-                      Navigator.pop(context);
+                      onPressed:  (){
+                        Navigator.pop(context);
+                      },
+                      child: Icon(Icons.arrow_forward),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
 
-                    },
-                    child: Icon(Icons.arrow_forward),
-                  ),
+                    ),
+                  )
+
                 ]
             ),
 

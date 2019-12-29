@@ -5,6 +5,10 @@
 ### Phần mềm sẽ cung cấp từ vựng theo từng Unit và từng Book giúp người đọc dễ dàng học. Các từ đều có ảnh minh họa, phát âm và diễn giải giúp cho người học nhớ lâu hơn.
 ## API Link :  https://abc-x.azurewebsites.net
 ## Cơ sở dữ Liệu
-![Image](csdl.png)
+![Image](assets/illustration/csdl.JPG)
 ## Minh Họa
-![Image](assets/google_logo.png)
+
+![Image](assets/illustration/mh1.jpg)
+![Image](assets/illustration/mh2.jpg)
+![Image](assets/illustration/mh3.jpg)
+![Image](assets/illustration/mh4.jpg)
